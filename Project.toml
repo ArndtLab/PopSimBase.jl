@@ -1,0 +1,7 @@
+name = "PopSimBase"
+uuid = "e60d1b08-a48f-4b5c-9e89-ad4b39d64fb4"
+authors = ["Peter Arndt <arndt@molgen.mpg.de> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.6"
