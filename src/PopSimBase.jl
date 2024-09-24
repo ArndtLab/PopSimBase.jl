@@ -1,5 +1,16 @@
 module PopSimBase
 
-# Write your package code here.
+using Reexport
+
+export Segmentals, Populations, CoalescentTrees
+
+
+include("Segmentals.jl")
+include("Populations.jl")
+include("CoalescentTrees.jl")
+
+@reexport using .Populations
+# @reexport using .Segmentals
+
 
 end
