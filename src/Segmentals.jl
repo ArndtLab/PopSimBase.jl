@@ -1,7 +1,6 @@
 module Segmentals
 
-export Segmental, start, stop, data, segment_length,
-    AbstractSegmentalsIterator
+export Segmental, chrom, start, stop, data, segment_length
 
 struct Segmental{C,D}
     chrom::C
@@ -22,6 +21,6 @@ data(s::Segmental) = s.data
 segment_length(s::Segmental) = s.stop - s.start + 1
 
 
-abstract type AbstractSegmentalsIterator end
+# abstract type AbstractSegmentalsIterator end
 
 end    # module Segmentals
