@@ -29,7 +29,6 @@ struct CoalescentTree{T} <: AbstractCoalescentTree
     tree::T
 
     function CoalescentTree{T}(ids::Vector{Int64}, firstid::Int64, firsttime::Float64, lasttime::Float64, tree::T) where T
-        @assert length(ids) == 2 "The ids must be a vector of length 2 - more needs to be implemented"
         new(ids, firstid, firsttime, lasttime, tree)
     end
 end
