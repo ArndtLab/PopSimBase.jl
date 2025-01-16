@@ -58,14 +58,6 @@ time_span(ct::MutatedSimpleCoalescentTree) = ct.timespan
 iscoalescent(ct::MutatedSimpleCoalescentTree) = true
 
 
-struct MutatedSimpleCoalescentTree{T} <: AbstractCoalescentTree
-    timespan::T
-end
-
-time_span(ct::SimpleCoalescentTree{T}) where {T} = ct.timespan
-iscoalescent(ct::SimpleCoalescentTree{T}) where {T} = true
-
-
 
 
 
