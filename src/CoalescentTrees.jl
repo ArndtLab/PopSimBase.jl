@@ -8,12 +8,12 @@ export AbstractCoalescentTree,
 abstract type AbstractCoalescentTree end
 
 
-struct SimpleCoalescentTree{T} <: AbstractCoalescentTree
-    timespan::T
+struct SimpleCoalescentTree <: AbstractCoalescentTree
+    timespan::Float64
 end
 
-time_span(ct::SimpleCoalescentTree{T}) where {T} = ct.timespan
-iscoalescent(ct::SimpleCoalescentTree{T}) where {T} = true
+time_span(ct::SimpleCoalescentTree) = ct.timespan
+iscoalescent(ct::SimpleCoalescentTree) = true
 
 
 """
@@ -42,6 +42,50 @@ first_id(ct::CoalescentTree{T}) where {T}   = ct.first_id
 iscoalescent(ct::CoalescentTree{T}) where {T} = first_id(ct) > 0
 
 Base.show(io::IO, ct::CoalescentTree{T}) where {T} = print(io, "CoalescentTree starting at $(ct.first_time) in $(ct.first_id) for $(length(ct.ids)) individuals")
+
+
+
+
+
+
+struct MutatedSimpleCoalescentTree{M} <: AbstractCoalescentTree
+    timespan::Float64
+    mutated_length::Int64
+    mutations::M
+end
+
+time_span(ct::MutatedSimpleCoalescentTree) = ct.timespan
+iscoalescent(ct::MutatedSimpleCoalescentTree) = true
+
+
+struct MutatedSimpleCoalescentTree{T} <: AbstractCoalescentTree
+    timespan::T
+end
+
+time_span(ct::SimpleCoalescentTree{T}) where {T} = ct.timespan
+iscoalescent(ct::SimpleCoalescentTree{T}) where {T} = true
+
+
+
+
+
+struct MutatedCoalescentTree{T,M} <: AbstractCoalescentTree
+    ids::Vector{Int64}
+    first_id::Int64
+    first_time::Float64
+    last_time::Float64
+    tree::T
+    mutated_length::Int64
+    mutations::M
+end
+
+first_time(ct::MutatedCoalescentTree{T,M}) where {T,M} = ct.first_time
+last_time(ct::MutatedCoalescentTree{T,M}) where {T,M} = ct.last_time
+time_span(ct::MutatedCoalescentTree{T,M}) where {T,M} = last_time(ct) - first_time(ct)
+first_id(ct::MutatedCoalescentTree{T,M}) where {T,M}   = ct.first_id
+iscoalescent(ct::MutatedCoalescentTree{T,M}) where {T,M} = first_id(ct) > 0
+
+Base.show(io::IO, ct::MutatedCoalescentTree{T,M}) where {T,M} = print(io, "MutatedCoalescentTree starting at $(ct.first_time) in $(ct.first_id) for $(length(ct.ids)) individuals")
 
 
 
