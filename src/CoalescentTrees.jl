@@ -1,11 +1,13 @@
 module CoalescentTrees
 
 
-export AbstractCoalescentTree, 
+export AbstractCoalescentTree, AbstractMutatedCoalescentTree,
     SimpleCoalescentTree, CoalescentTree, 
+    MutatedSimpleCoalescentTree, MutatedCoalescentTree,
     first_time, first_id, last_time, iscoalescent, time_span
 
 abstract type AbstractCoalescentTree end
+abstract type AbstractMutatedCoalescentTree end
 
 
 struct SimpleCoalescentTree <: AbstractCoalescentTree
@@ -27,10 +29,6 @@ struct CoalescentTree{T} <: AbstractCoalescentTree
     first_time::Float64
     last_time::Float64
     tree::T
-
-    function CoalescentTree{T}(ids::Vector{Int64}, firstid::Int64, firsttime::Float64, lasttime::Float64, tree::T) where T
-        new(ids, firstid, firsttime, lasttime, tree)
-    end
 end
 
 CoalescentTree(ids::Vector{Int64}, first_id::Int64, first_time::Float64, last_time::Float64) = CoalescentTree{Nothing}(ids, first_id, first_time, last_time, nothing)
@@ -48,7 +46,7 @@ Base.show(io::IO, ct::CoalescentTree{T}) where {T} = print(io, "CoalescentTree s
 
 
 
-struct MutatedSimpleCoalescentTree{M} <: AbstractCoalescentTree
+struct MutatedSimpleCoalescentTree{M} <: AbstractMutatedCoalescentTree
     timespan::Float64
     mutated_length::Int64
     mutations::M
@@ -61,7 +59,7 @@ iscoalescent(ct::MutatedSimpleCoalescentTree) = true
 
 
 
-struct MutatedCoalescentTree{T,M} <: AbstractCoalescentTree
+struct MutatedCoalescentTree{T,M} <: AbstractMutatedCoalescentTree
     ids::Vector{Int64}
     first_id::Int64
     first_time::Float64
