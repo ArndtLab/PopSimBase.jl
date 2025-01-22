@@ -4,6 +4,24 @@ using TestItemRunner
 
 
 
+
+@testitem "Segemnts" begin
+    s = Segments.Segment(1, 10)
+    @test Segments.start(s) == 1
+    @test Segments.stop(s) == 10
+    @test Segments.segment_length(s) == 10
+end
+
+
+
+@testitem "SegItem" begin
+    si = SegItem(Segment(1, 10), 3.14)
+    @test start(si) == 1
+    @test stop(si) == 10
+    @test segment_length(si) == 10
+    @test PopSimBase.data(si) == 3.14
+end
+
 @testitem "StationaryPopulation" begin
     genome_length = 1_000_000
 
