@@ -4,7 +4,7 @@ using Reexport
 using Lazy
 
 
-export Segments, Populations, CoalescentTrees, AbstractSegmentalsIterator, SegItem
+export Segments, Populations, CoalescentTrees, AbstractSegmentsIterator, SegItem
 
 
 include("Segments.jl")
