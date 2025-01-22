@@ -1,6 +1,6 @@
 module Segmentals
 
-export Segmental, chrom, start, stop, data, segment_length
+export Segmental #, chrom, start, stop, data, segment_length
 
 struct Segmental{C,D}
     chrom::C
