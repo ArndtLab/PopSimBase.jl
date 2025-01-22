@@ -1,20 +1,21 @@
 module PopSimBase
 
 using Reexport
+using Lazy
 
-export Segmentals, Populations, CoalescentTrees, AbstractSegmentalsIterator
+
+export Segments, Populations, CoalescentTrees, AbstractSegmentalsIterator, SegItem
 
 
-include("Segmentals.jl")
+include("Segments.jl")
 include("Populations.jl")
 include("CoalescentTrees.jl")
 
 
-abstract type AbstractSegmentalsIterator end
-
+abstract type AbstractSegmentsIterator end
 
 @reexport using .Populations
-@reexport using .Segmentals
+@reexport using .Segments
 
 
 end
