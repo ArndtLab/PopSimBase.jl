@@ -4,8 +4,10 @@ authors = ["Peter Arndt <arndt@molgen.mpg.de> and contributors"]
 version = "0.1.4"
 
 [deps]
+Lazy = "50d2b5c4-7a5e-59d5-8109-a42b560f39c0"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 
 [compat]
+Lazy = "0.15.1"
 Reexport = "1"
 julia = "1.6"
