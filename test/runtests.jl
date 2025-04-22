@@ -24,20 +24,34 @@ end
 
 @testitem "StationaryPopulation" begin
     genome_length = 1_000_000
+    N = 1_001
 
-    pop = StationaryPopulation(; genome_length)
+    pop = StationaryPopulation(; genome_length, population_size = N)
 
     @test pop.genome_length == genome_length
+    @test pop.population_size == N
+    @test population_size(pop, 0.0) == N
+    @test population_size(pop, 1.0) == N    
+    @test population_size(pop) == N    
 end
 
 @testitem "VaryingPopulation" begin
     genome_length = 1_000_000
-    Ts = [0.0, 1.0, 2.0]
-    Ns = [1_000, 1_000, 1_000]
+    Ts = [0.0, 120.0, 150.0]
+    Ns = [2_000, 200, 1_000]
     pop = VaryingPopulation(; genome_length, population_sizes = Ns, times = Ts)
 
     @test pop.genome_length == genome_length
     @test pop.population_sizes == Ns
     @test pop.times == Ts
+
+    @test population_size(pop, 0.0) == 2_000
+    @test population_size(pop, 120.0) == 200
+    @test population_size(pop, 150.0) == 1_000
+    @test population_size(pop, 1.0) == 2_000
+    @test population_size(pop, 100.0) == 2_000
+    @test population_size(pop, 130.0) == 200
+    @test population_size(pop, 1000.0) == 1_000
+
 end
 
